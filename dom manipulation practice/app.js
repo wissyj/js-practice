@@ -30,8 +30,7 @@ function addTask(e) {
   // add class to link tag
   link.className = "delete-item secondary-content";
   // add i tag
-  link.innerHTML =
-    '<i class="fa-solid fa-xmark fa-lg" style="color:#000;""></i>';
+  link.innerHTML = '<i class="fa-solid fa-xmark fa-lg" "></i>';
   // append link to li tag
   listItem.appendChild(link);
   // append li tag to ul tag
