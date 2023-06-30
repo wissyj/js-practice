@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js sandbox dom manipulation - task list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/materialize.min.css">
+    <style>
+        .collection-item>a>svg {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            fill: #fff;
+            display: none;
+        }
+
+        .collection .collection-item a {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .btn {
+            border-radius: 50px;
+        }
+
+        .collection .collection-item {
+            margin: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .collection .collection-item:hover svg {
+            display: block;
+        }
+
+        #confirmDeleteBox {
+            width: 80vw;
+            height: 7rem;
+            padding: 1rem 2rem 1.5rem 2rem;
+            background: #1e1c1c;
+            color: #fff;
+            border-radius: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .selectBox {
+            transform: translateX(40%);
+        }
+
+        button {
+            padding: .5rem 1.5rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:first-child {
+            background: rgb(232, 58, 58);
+        }
+
+        button:nth-child(2) {
+            background: #30a630;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- try to recreate the basics in google's  keep note after you're done-->
+    <!-- follow brad and heavers mike on all available platforms -->
+    <div id="confirmDeleteBox">
+        <p>Confirm Delete?</p>
+        <div class="selectBox">
+            <button id="acceptDelete">Yes</button>
+            <button id="rejectDelete">No</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div id="main" class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            To-Do List
+                        </span>
+                        <div class="row">
+                            <form id="task-form">
+                                <div class="input-field col s12">
+                                    <input type="text" name="task" id="task">
+                                    <label for="task">New Task</label>
+                                </div>
+                                <input type="submit" value="add task" class="btn">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <span class="card-title">
+                            Tasks
+                        </span>
+                        <div class="row">
+                            <form id="task-form">
+                                <div class="input-field col s12">
+                                    <input type="text" name="filter" id="filter">
+                                    <label for="filter">Search your notes</label>
+                                </div>
+                                <ul class="collection"> </ul>
+                                <a href="#" class="clear-tasks btn red">Clear all</a>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/materialize.min.js"></script>
+    <script src="../to do list/app.js"></script>
+</body>
+
+</html>
