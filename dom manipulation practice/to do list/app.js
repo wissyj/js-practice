@@ -4,8 +4,6 @@ const taskList = document.querySelector(".collection");
 const clearBtn = document.querySelector(".clear-tasks");
 const filter = document.querySelector("#filter");
 const taskInput = document.querySelector("#task");
-const deleteBox = document.querySelector("#confirmDeleteBox");
-const yesBtn = document.querySelector(".selectBox button:first-child");
 // load all event listeners
 loadEventListeners();
 // load  event listeners
@@ -29,7 +27,7 @@ function getTasks() {
     // Create li element
     const li = document.createElement("li");
     // Add class
-    li.className = "collection-item cyan darken-3";
+    li.className = "collection-item cyan ";
     // Create text node and append to li
     li.appendChild(document.createTextNode(note));
     // Create new link element
@@ -56,7 +54,7 @@ function addTask(e) {
   // create li element
   const listItem = document.createElement("li");
   // add class
-  listItem.className = "collection-item cyan darken-3";
+  listItem.className = "collection-item cyan";
   // add any value entered in the input box as the text of the link tag
   listItem.appendChild(document.createTextNode(taskInput.value));
 
@@ -102,7 +100,6 @@ function storeTaskInLocalStorage(note) {
 
 //   localStorage.setItem('tasks', JSON.stringify(tasks));
 // }
-const noBtn = document.querySelector(".selectBox button:nth-child(2)");
 // remove task event
 function removeTask(e) {
   if (e.target.parentElement.classList.contains("delete-item")) {
