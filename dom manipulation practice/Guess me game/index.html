@@ -5,27 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Js sandbox dom manipulation - Loan calculator</title>
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+        integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- bootstrap min css -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
+        body {
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            height: 100vh;
+        }
+
         svg {
             width: 1.5rem;
-            height: 1.5rem;
-            fill: #fff;
+            fill: rgb(183, 127, 127);
+            display: none;
+        }
+
+        input[type="number"] {
+            width: 20rem;
+            border-width: 2px;
+            border-color: #fff;
+            border-radius: 5px;
+        }
+
+        input[type="number"]:disabled {
+            background: #fff;
+            color: #000;
+        }
+
+        input[type="submit"] {
+            background: #7c817c;
+            border: none;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        input::placeholder {
+            padding-left: 1rem;
+        }
+
+        @media (max-width:780px) {
+            input[type="number"] {
+                width: 15rem;
+            }
+
+            input[type="submit"] {
+                margin-top: 1rem;
+            }
         }
     </style>
 </head>
 
 <body class="bg-dark">
-    <div class="container">
-
+    <div class="container d-flex ">
+        <div class="m-auto h-50">
+            <p class="h1">Number Guesser Game</p>
+            <div id="gameBox">
+                <p>Guess a number between <span class="minNum"></span> to <span class="maxNum"></span></p>
+                <input type="number" class="mb-1" id="guessInputBox" placeholder="Enter your guess here..."><br>
+                <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path
+                        d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z" />
+                </svg>
+                <p id="message"></p>
+                <input type="submit" id="guessInputBtn" class="btn-block px-3 p-2">
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/assets/js/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
+    <!-- bootstrap min js cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+        integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- bootstrap min js file -->
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="../Guess me game/app.js"></script>
 </body>
