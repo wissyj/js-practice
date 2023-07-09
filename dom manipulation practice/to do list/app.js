@@ -4,6 +4,7 @@ const taskList = document.querySelector(".collection");
 const clearBtn = document.querySelector(".clear-tasks");
 const filter = document.querySelector("#filter");
 const taskInput = document.querySelector("#task");
+const openModal = document.querySelectorAll(".collection-item");
 // load all event listeners
 loadEventListeners();
 // load  event listeners
@@ -48,8 +49,7 @@ function getTasks() {
 function addTask(e) {
   if (taskInput.value === "") {
     alert("Please add a Task");
-    // check if value is empty and remove li
-    // listItem.remove(3);
+    form.removeEventListener();
   }
   // create li element
   const listItem = document.createElement("li");
@@ -87,19 +87,7 @@ function storeTaskInLocalStorage(note) {
 
   localStorage.setItem("notes", JSON.stringify(notes));
 }
-// // Store Task
-// function storeTaskInLocalStorage(task) {
-//   let tasks;
-//   if(localStorage.getItem('tasks') === null){
-//     tasks = [];
-//   } else {
-//     tasks = JSON.parse(localStorage.getItem('tasks'));
-//   }
 
-//   tasks.push(task);
-
-//   localStorage.setItem('tasks', JSON.stringify(tasks));
-// }
 // remove task event
 function removeTask(e) {
   if (e.target.parentElement.classList.contains("delete-item")) {
@@ -132,7 +120,9 @@ function removeTaskFromLocalStorage(taskItem) {
 function clearTasks(e) {
   // you can also use - taskList.innerHTML ='';
   while (taskList.firstChild) {
+    // if (confirm("Are you sure?")) {
     taskList.removeChild(taskList.firstChild);
+    // }
   }
   // Clear from LS
   clearTasksFromLocalStorage();
@@ -156,3 +146,39 @@ function filterTasks(e) {
   });
   e.preventDefault();
 }
+// reveal tips body to show tips to user
+const plusSign = document.querySelector("#plusSign");
+const tipsBody = document.querySelector("#tipsBody");
+plusSign.addEventListener("click", function (e) {
+  if (tipsBody.classList.contains("hideTips")) {
+    tipsBody.classList.add("showTips");
+    tipsBody.classList.remove("hideTips");
+    plusSign.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/></svg>';
+  } else if (tipsBody.classList.contains("showTips")) {
+    tipsBody.classList.add("hideTips");
+    tipsBody.classList.remove("showTips");
+    plusSign.innerHTML =
+      '<svg id="plusSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>';
+  }
+});
+// edit text in li after creation
+const modalBox = document.createElement("div");
+const closeModal = document.createElement("div");
+// add class to  tagS
+modalBox.className = "modal show-modal";
+close.className = "btn";
+close.textContent = "CLOSE";
+// Show modal
+openModal.addEventListener("click", showModal);
+function showModal(e) {
+  console.log("alas");
+  modal.appendChild(document.createTextNode(e.target.value));
+}
+// // Hide modal
+// close.addEventListener("click", () => modal.classList.remove("show-modal"));
+
+// // Hide modal on outside click
+// window.addEventListener("click", (e) =>
+//   e.target == modal ? modal.classList.remove("show-modal") : false
+// );

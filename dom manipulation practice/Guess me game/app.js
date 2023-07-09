@@ -7,8 +7,8 @@
 
 // Variables in Javascript side
 let minNumValue = 1,
-  maxNumValue = 10,
-  winningNum = 2,
+  maxNumValue = 20,
+  winningNum = getRandomNum(minNumValue, maxNumValue),
   guessesLeft = 3;
 
 //   Variables for UI (Dom Elements)
@@ -44,7 +44,6 @@ function messageInfo(e) {
     guessInputBox.style.borderColor = " rgb(83, 206, 83)";
     guessInputBox.disabled = true;
     guessInputBtn.value = "Play again";
-    guessInputBtn.className += " play-again";
   } else {
     guessesLeft -= 1;
 
@@ -55,7 +54,7 @@ function messageInfo(e) {
       );
       guessInputBox.disabled = true;
       guessInputBtn.value = "Play again";
-      svg.style.display = "none";
+      svg.style.display = "block";
     } else {
       // Game continues even answer is wrong
       // Clear Input
@@ -80,9 +79,21 @@ function messageInfo(e) {
         "rgb(183, 127, 127)"
       );
     }
+    if (guessesLeft === 0 && isNaN(guess)) {
+      setMessage(
+        `Game Over, You Lost. The correct number is ${winningNum}`,
+        "rgb(183, 127, 127)"
+      );
+    }
   }
 }
-
+// put the winning number in random whole numbers between the minimum value and maximum value
+// math.random means generate random numbers between 0-1 at random(decimals), math.floor
+function getRandomNum(minNumValue, maxNumValue) {
+  return Math.floor(
+    Math.random() * (maxNumValue - minNumValue + 1) + minNumValue
+  );
+}
 //   setMessage function
 //     we are setting the parameter called color so that any color we input in the function 'setMessage' will be applied and we can edit it anytime and would not have the same color applied all through the project even as we will require different text colors later on. This makes the message appear as red only if the function with the parameter 'color' is given red
 function setMessage(msg, color) {

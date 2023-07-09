@@ -35,10 +35,25 @@ function calculateResults() {
     totalInterest.value = (monthly * calculatedPayments - principal).toFixed(2);
     // show results
     document.getElementById("results").style.display = "block";
+    document.getElementById("results").classList += " block";
     // hide loader
     document.getElementById("loading").style.display = "none";
   } else {
     showErrorBox();
+  }
+  const calculateBtn = document.querySelector("#calculateBtn");
+  if (
+    calculateBtn.value === "Calculate" &&
+    document.getElementById("results").classList.contains("block")
+  ) {
+    calculateBtn.value = "Refresh";
+    calculateBtn.addEventListener("mousedown", function (e) {
+      if (e.target.value === "Refresh") {
+        window.location.reload();
+      }
+    });
+  } else {
+    calculateBtn.value = "Calculate";
   }
   // show error box
   function showErrorBox() {
