@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- redesign the google offline game -->
+<!-- make the list ot have slash if the check box is ticked -->
+<!-- this color is used often for a box that informs the user "#d3d952" -->
 
 <head>
     <meta charset="UTF-8">
@@ -30,14 +33,32 @@
             border-radius: 50px;
         }
 
+        .collection .collection-item button {
+            cursor: pointer;
+            margin: 0 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.4s;
+            border: none;
+            border-radius: 5px;
+        }
+
         .collection .collection-item {
             margin: 10px;
-            border: 1px solid #e0e0e0;
+            border: 2px solid #e0e0e0;
             border-radius: 20px;
             color: #fff;
             font-size: 18px;
             background: #00838f !important;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
+        .collection .collection-item:focus {
+            border: 2px solid #333 !important;
         }
 
         .collection .collection-item:hover {
@@ -49,36 +70,27 @@
             display: block;
         }
 
-        #confirmDeleteBox {
-            width: 80vw;
-            height: 7rem;
-            padding: 1rem 2rem 1.5rem 2rem;
-            background: #1e1c1c;
+        .collection .collection-item .text {
             color: #fff;
-            border-radius: 10px;
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0 auto;
-            display: none;
-        }
-
-        .selectBox {
-            transform: translateX(40%);
-        }
-
-        button {
-            padding: .5rem 1.5rem;
-            border-radius: 20px;
+            font-size: 1.125rem;
+            display: block;
+            transition: 0.4s;
             border: none;
-            cursor: pointer;
+            outline: none;
+            padding: .5rem;
+            margin: 0;
+            height: auto;
         }
 
-        button:first-child {
-            background: rgb(232, 58, 58);
+        .collection .collection-item .text:read-only {
+            color: #fff;
+            border: none;
+            height: auto;
         }
 
-        button:nth-child(2) {
-            background: #30a630;
-
+        .collection .collection-item .text:focus {
+            color: #fff;
+            border: 1px solid #fff;
         }
 
         #tipsHeading {
@@ -99,8 +111,44 @@
             display: block;
         }
 
-        .show-modal {
-            display: block;
+        .check-box {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            border: 2px #000;
+            background-color: #333;
+        }
+
+        .edit {
+            color: #00838f;
+            background-color: #fff;
+            height: 2.5rem;
+        }
+
+        .edit:active {
+            background-color: #00838f;
+            color: #fff;
+            height: 2.5rem;
+        }
+
+        .delete {
+            color: #00838f;
+            background-color: #fff;
+            height: 2.5rem;
+        }
+
+        .delete:active {
+            background-color: #00838f;
+            color: #fff;
+            height: 2.5rem;
+        }
+
+        [contentEditable="true"] {
+            background-color: lightyellow;
+        }
+
+        input [type="submit"]:active {
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -108,20 +156,16 @@
 <body>
     <!-- try to recreate the basics in google's  keep note after you're done-->
     <!-- follow brad and heavers mike on all available platforms -->
-    <div id="confirmDeleteBox">
-        <p>Confirm Delete?</p>
-        <div class="selectBox">
-            <button id="acceptDelete">Yes</button>
-            <button id="rejectDelete">No</button>
-        </div>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col s12">
                 <div id="main" class="card">
                     <div class="card-content">
                         <span class="card-title">
-                            To-Do List
+                            NotePad <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path
+                                    d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                            </svg>
                         </span>
                         <div class="row">
                             <form id="task-form">
@@ -135,15 +179,16 @@
                     </div>
                     <div class="card-action">
                         <span class="card-title">
-                            Tasks
+                            Notes
                         </span>
                         <div class="row">
                             <form id="task-form">
-                                <div class="input-field col s12">
+                                <div class="input-field col s12 ">
                                     <input type="text" name="filter" id="filter">
                                     <label for="filter">Search your notes</label>
                                 </div>
-                                <ul class="collection"> </ul>
+                                <ul class="collection">
+                                </ul>
                                 <a href="#" class="clear-tasks btn red">Clear all</a>
                                 <div id="tips">
                                     <div id="tipsHeading">
@@ -154,10 +199,10 @@
                                         </svg>
                                     </div>
                                     <div id="tipsBody" class="hideTips">
-                                        <ol class="collection" style="padding: 1rem;">
-                                            <li>Double click the task to edit the content.</li>
-                                            <li>Click the task to reveal the delete icon.</li>
-                                            <li>Double click the task to edit the content.</li>
+                                        <ol style="padding: 1rem;">
+                                            <li>Click the EDIT button to edit the content of your note.</li>
+                                            <li>Click the DELETE button to delete the note permanently.</li>
+                                            <li>Click the SAVE button to save the edited content.</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -172,7 +217,7 @@
         integrity="sha512-E9vR5BfN3bwSc45BWl95328hvOcBYjMzKAKgdNM59yQXpTC4glztZyVoFJRp5qPc5A95zUZ8D5N7kEwUtJ9f6w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/assets/js/materialize.min.js"></script>
-    <script src="../to do list/app.js"></script>
+    <script src="../NOTEPAD/app.js"></script>
 </body>
 
 </html>

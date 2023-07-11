@@ -7,7 +7,7 @@
 
 // Variables in Javascript side
 let minNumValue = 1,
-  maxNumValue = 20,
+  maxNumValue = 10,
   winningNum = getRandomNum(minNumValue, maxNumValue),
   guessesLeft = 3;
 
@@ -46,6 +46,7 @@ function messageInfo(e) {
     guessInputBtn.value = "Play again";
   } else {
     guessesLeft -= 1;
+    // guessesLeft = guessesLeft - 1;
 
     if (guessesLeft === 0) {
       setMessage(
@@ -61,7 +62,6 @@ function messageInfo(e) {
       guessInputBox.value = "";
       // set border
       guessInputBox.style.borderColor = " rgb(183, 127, 127)";
-      // guessesLeft = guessesLeft - 1;
       setMessage(
         ` ${guess} is the wrong number. ${guessesLeft} guess(es) left`,
         "rgb(183, 127, 127)"
@@ -72,16 +72,17 @@ function messageInfo(e) {
     //   message.style.display = "none";
     // }
     //   display error message if input box is empty, this will override the previous message above
+
+    if (guessesLeft === 0 && isNaN(guess)) {
+      setMessage(
+        `Game Over, You Lost. The correct number is ${winningNum}`,
+        "rgb(183, 127, 127)"
+      );
+    }
     if (isNaN(guess) || guess < minNum || guess > maxNum) {
       svg.style.display = "block";
       setMessage(
         ` Please enter a number between ${minNumValue} and ${maxNumValue}`,
-        "rgb(183, 127, 127)"
-      );
-    }
-    if (guessesLeft === 0 && isNaN(guess)) {
-      setMessage(
-        `Game Over, You Lost. The correct number is ${winningNum}`,
         "rgb(183, 127, 127)"
       );
     }
