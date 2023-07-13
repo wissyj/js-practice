@@ -24,6 +24,7 @@ const guessInputBox = document.querySelector("#guessInputBox"),
 gameBox.addEventListener("mousedown", function (e) {
   if (e.target.value === "Play again") {
     window.location.reload();
+    guessInputBox.value = "";
   }
 });
 

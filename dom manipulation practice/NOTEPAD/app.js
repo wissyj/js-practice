@@ -1,3 +1,28 @@
+// Get the current time
+// Function to update the greeting based on the current time
+function updateGreeting() {
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+
+  let greeting;
+  if (currentHour < 12) {
+    greeting = "Good morning";
+  } else if (currentHour < 18) {
+    greeting = "Good afternoon";
+  } else {
+    greeting = "Good evening";
+  }
+
+  const greetingElement = document.querySelector("#greeting");
+  greetingElement.textContent = `${greeting}, User!`;
+}
+
+// Initial call to update the greeting
+updateGreeting();
+
+// Update the greeting every 5 seconds
+setInterval(updateGreeting, 5000);
+
 // Define UI Vars
 const form = document.querySelector("#task-form");
 const taskList = document.querySelector(".collection");
@@ -89,6 +114,13 @@ function addTask(e) {
   task_input_el.type = "text";
   task_input_el.value = taskInput.value;
   task_input_el.setAttribute("readonly", "readonly");
+  // Select the textarea element
+  // Add an event listener for the input event
+  task_input_el.addEventListener("input", function () {
+    this.style.height = "auto"; // Reset the height to auto
+    this.style.height = `${this.scrollHeight}px`; // Set the height based on the scrollHeight
+    console.log(task_input_el);
+  });
   // edit button
   const task_edit_el = document.createElement("button");
   task_edit_el.classList.add("edit");
@@ -230,6 +262,7 @@ plusSign.addEventListener("click", function (e) {
       '<svg id="plusSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>';
   }
 });
+
 // // practice
 // const shot = document.querySelector(".collection");
 // shot.onmouseover = function () {

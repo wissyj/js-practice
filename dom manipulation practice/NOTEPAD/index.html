@@ -16,6 +16,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/assets/css/materialize.min.css">
     <style>
+        .card-title h5,
+        svg {
+            color: #26a69a;
+            fill: #26a69a;
+        }
+
         .collection-item>a>svg {
             width: 100%;
             height: 100%;
@@ -85,7 +91,7 @@
         .collection .collection-item .text:read-only {
             color: #fff;
             border: none;
-            height: auto;
+            resize: none;
         }
 
         .collection .collection-item .text:focus {
@@ -143,6 +149,19 @@
             height: 2.5rem;
         }
 
+        @media (max-width:768px) {
+            .collection .collection-item {
+                display: block;
+            }
+
+            .edit,
+            .delete {
+                font-size: .9rem !important;
+                padding: 0.5rem;
+                margin: 1rem;
+            }
+        }
+
         [contentEditable="true"] {
             background-color: lightyellow;
         }
@@ -166,6 +185,8 @@
                                 <path
                                     d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                             </svg>
+                            <h5 id="greeting"></h5>
+
                         </span>
                         <div class="row">
                             <form id="task-form">
@@ -199,6 +220,7 @@
                                     </div>
                                     <div id="tipsBody" class="hideTips">
                                         <ol style="padding: 1rem;">
+                                            <li>Click the ENTER/ ADD TASK button to ADD your note.</li>
                                             <li>Click the EDIT button to edit the content of your note.</li>
                                             <li>Click the DELETE button to delete the note permanently.</li>
                                             <li>Click the SAVE button to save the edited content.</li>
