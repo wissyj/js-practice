@@ -162,12 +162,90 @@
             }
         }
 
-        [contentEditable="true"] {
-            background-color: lightyellow;
-        }
-
         input [type="submit"]:active {
             opacity: 0.6;
+        }
+
+        /* CSS for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            max-height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            max-width: 600px;
+            width: 80%;
+            max-height: 80vh;
+            /* Limit the maximum height of the modal */
+            overflow-y: auto;
+            /* Enable vertical scrolling if needed */
+        }
+
+        .close {
+            color: #f44336;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        #modal-textarea {
+            color: #00838f;
+            max-width: 100%;
+            height: 15rem;
+            padding: .5rem;
+        }
+
+        ::placeholder {
+            color: #333;
+            opacity: 0.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0.8rem;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fff;
+            border-radius: 10px;
+            margin-block: 0.5rem;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #868383;
+            opacity: 0.3;
+            border-radius: 10px;
+        }
+
+        ::-moz-selection {
+            background: #00838f;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #00838f;
+            color: #fff;
         }
     </style>
 </head>
@@ -175,7 +253,16 @@
 <body>
     <!-- try to recreate the basics in google's  keep note after you're done-->
     <!-- follow brad and heavers mike on all available platforms -->
+    <!-- Modal for textarea clone to view textarea content in full -->
+
+
     <div class="container">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <textarea id="modal-textarea" readonly></textarea>
+            </div>
+        </div>
         <div class="row">
             <div class="col s12">
                 <div id="main" class="card">
@@ -191,7 +278,7 @@
                         <div class="row">
                             <form id="task-form">
                                 <div class="input-field col s12">
-                                    <input type="text" name="task" id="task" placeholder="Add your notes...">
+                                    <input type="text" name="task" id="task" placeholder="What do you have in mind?">
                                 </div>
                                 <input type="submit" value="add task" class="btn">
                             </form>
@@ -224,6 +311,7 @@
                                             <li>Click the EDIT button to edit the content of your note.</li>
                                             <li>Click the DELETE button to delete the note permanently.</li>
                                             <li>Click the SAVE button to save the edited content.</li>
+                                            <li>Double-Click the note view in full screen.</li>
                                         </ol>
                                     </div>
                                 </div>

@@ -12,9 +12,8 @@ function updateGreeting() {
   } else {
     greeting = "Good evening";
   }
-
   const greetingElement = document.querySelector("#greeting");
-  greetingElement.textContent = `${greeting}, User!`;
+  greetingElement.textContent = `${greeting}, Wissy!`;
 }
 
 // Initial call to update the greeting
@@ -98,6 +97,9 @@ function getTasks() {
       taskList.removeChild(li);
       e.preventDefault();
     });
+    const listItems = document.querySelectorAll("li");
+
+    editModal(listItems);
   });
 }
 // add task event
@@ -114,13 +116,7 @@ function addTask(e) {
   task_input_el.type = "text";
   task_input_el.value = taskInput.value;
   task_input_el.setAttribute("readonly", "readonly");
-  // Select the textarea element
-  // Add an event listener for the input event
-  task_input_el.addEventListener("input", function () {
-    this.style.height = "auto"; // Reset the height to auto
-    this.style.height = `${this.scrollHeight}px`; // Set the height based on the scrollHeight
-    console.log(task_input_el);
-  });
+
   // edit button
   const task_edit_el = document.createElement("button");
   task_edit_el.classList.add("edit");
@@ -169,6 +165,33 @@ function addTask(e) {
     removeTaskFromLocalStorage(li);
     taskList.removeChild(li);
     e.preventDefault();
+  });
+  const listItems = document.querySelectorAll("li");
+
+  editModal(listItems);
+}
+function editModal(listItems) {
+  listItems.forEach(function (listItem) {
+    listItem.addEventListener("dblclick", function () {
+      // Clone the value of the textarea
+      const listItemTextarea = this.querySelector("textarea.text");
+      const textareaValue = listItemTextarea.value;
+      const modalTextarea = document.querySelector("#modal-textarea");
+      modalTextarea.value = textareaValue;
+
+      // Show the modal
+      const modal = document.querySelector("#modal");
+      const modalContent = document.querySelector(".modal-content");
+      modal.style.display = "flex";
+    });
+    // Select the close button of the modal
+    const closeButton = document.querySelector(".close");
+    // Add click event listener to the close button
+    closeButton.addEventListener("click", function () {
+      // Hide the modal
+      const modal = document.querySelector("#modal");
+      modal.style.display = "none";
+    });
   });
 }
 
@@ -246,6 +269,9 @@ function filterTasks(e) {
   });
   e.preventDefault();
 }
+// Select all listItem elements
+const listItems = document.querySelectorAll(".collection-item");
+
 // reveal tips body to show tips to user
 const plusSign = document.querySelector("#plusSign");
 const tipsBody = document.querySelector("#tipsBody");
