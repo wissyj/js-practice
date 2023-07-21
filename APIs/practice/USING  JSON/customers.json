@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Wisdom",
+    "phoneNumber": "223-321-3323",
+    "company": "XYZ Company, Silicon Valley"
+  },
+  {
+    "id": 2,
+    "name": "Joy",
+    "phoneNumber": "333-444-5555",
+    "company": "ABC Company, Silicon Valley"
+  },
+  {
+    "id": 3,
+    "name": "Helen",
+    "phoneNumber": "555-666-7777",
+    "company": "DEF Company, Silicon Valley"
+  },
+  {
+    "id": 4,
+    "name": "Samuel",
+    "phoneNumber": "777-888-9999",
+    "company": "GHI Company, Silicon Valley"
+  }
+]

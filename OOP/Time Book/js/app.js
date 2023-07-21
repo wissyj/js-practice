@@ -118,17 +118,22 @@ class storeinLS {
       const ui = new UI();
       // add the value of the book gotten from LS to the UI- book-list
       ui.addTimeToList(book);
+      // get time for signing in
+      const currentTime = new Date();
+      // ask chat gpt how to extract only the date once
+      const displayTime = document.getElementById("date");
+      displayTime.textContent = `Welcome to ${currentTime}`;
     });
+    // code to remove the sign out button even on window reloaad
     const signedOut = document.querySelectorAll("td:nth-child(5)");
-
-    // Loop through each "signedOut" cell
-    signedOut.forEach((cell) => {
-      const signedOutValue = cell.textContent.trim();
+    // Loop through each "signedOut" element
+    signedOut.forEach((e) => {
+      const signedOutValue = e.textContent.trim();
 
       // Check if the "signedOut" time is not empty
       if (signedOutValue !== "") {
         // Get the corresponding "Sign Out" link (last child of the row)
-        const signedOutBtn = cell.parentElement.querySelector("td:last-child");
+        const signedOutBtn = e.parentElement.querySelector("td:last-child");
 
         // Remove the "Sign Out" link from the DOM
         signedOutBtn.remove();
@@ -156,7 +161,7 @@ class storeinLS {
 }
 //  Event listener for DOM LOAD
 document.addEventListener("DOMContentLoaded", storeinLS.displayBooksInUI);
-// event listener for add book
+// event listener for adding time log
 document.getElementById("book-form").addEventListener("submit", function (e) {
   const firstName = document.getElementById("firstName").value;
   const surname = document.getElementById("surname").value;
@@ -165,7 +170,7 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
   const currentTime = new Date();
   const currentHour = currentTime.getHours();
   const currentMinutes = currentTime.getMinutes();
-
+  // ask chat gpt how to extract only the date once
   let signedOut = ``;
   let signedIn = `${currentHour}:${currentMinutes}`;
   if (currentMinutes < 10) {

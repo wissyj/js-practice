@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
-    <link rel="stylesheet" href="./css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
     <style>
         .success,
         .error {
@@ -29,6 +29,14 @@
 
         .container h1 {
             display: flex;
+            justify-content: space-between;
+        }
+
+        .date {
+            font-size: 2rem;
+            width: 25rem;
+            height: 2rem;
+            overflow: hidden;
         }
 
         @media (max-width:720px) {
@@ -41,15 +49,21 @@
             width: 2.5rem;
             height: 1.5rem;
         }
+
+        #submit {
+            font-size: 1.5rem !important;
+            color: green;
+        }
     </style>
     <title>Digital Time Book</title>
 </head>
 <!-- try using chat gpt's ui to upgrade this digital timebook. The previous days will be at the left like that of chat gpt. On click it will display the timebook like that of chat gpt -->
 <!-- check if app my site can app this site later-->
+<!-- the suggestions that come out as we code are bootstrap's. Try hitting enter key to explore -->
 
 <body>
     <div class="container">
-        <h1><span class="title">Digital Time Book</span> <span id="date"></span></h1>
+        <h1><span class="title">Digital Time Book</span> <span class="date" id="date"></span></h1>
         <form id="book-form">
             <div>
                 <label for="firstName">First Name:</label>
