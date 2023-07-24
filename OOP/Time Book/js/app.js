@@ -118,11 +118,23 @@ class storeinLS {
       const ui = new UI();
       // add the value of the book gotten from LS to the UI- book-list
       ui.addTimeToList(book);
-      // get time for signing in
-      const currentTime = new Date();
-      // ask chat gpt how to extract only the date once
-      const displayTime = document.getElementById("date");
-      displayTime.textContent = `Welcome to ${currentTime}`;
+      document
+        .getElementById("buttonDate")
+        .addEventListener("click", function (e) {
+          const currentDate = new Date();
+          const year = currentDate.getFullYear();
+          const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+          const day = String(currentDate.getDate()).padStart(2, "0");
+
+          // Format the date in a way you want (e.g., YYYY-MM-DD)
+          const formattedDate = `${year}-${month}-${day}`;
+
+          // Update the "date" element with the formatted date
+          const displayTime = document.getElementById("date");
+          displayTime.textContent = `Welcome to ${formattedDate}`;
+
+          e.preventDefault();
+        });
     });
     // code to remove the sign out button even on window reloaad
     const signedOut = document.querySelectorAll("td:nth-child(5)");

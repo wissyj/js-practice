@@ -172,7 +172,7 @@ function addTask(e) {
 }
 function editModal(listItems) {
   listItems.forEach(function (listItem) {
-    listItem.addEventListener("dblclick", function () {
+    listItem.addEventListener("click", function () {
       // Clone the value of the textarea
       const listItemTextarea = this.querySelector("textarea.text");
       const textareaValue = listItemTextarea.value;
