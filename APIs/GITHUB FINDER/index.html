@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github User Finder</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css.map">
+    <style>
+        body {
+            background: #000;
+            height: 100vh;
+            color: #c6f8ff !important;
+
+        }
+
+        h1 {
+            font-size: 5rem;
+        }
+
+        p {
+            font-size: 1.1rem !important;
+        }
+
+        input[type=text] {
+            border-color: #333;
+            outline: none;
+            color: #c6f8ff;
+        }
+
+        input[type=text]::placeholder {
+            color: #c6f8ff;
+        }
+
+        input[type=text]:focus {
+            border-color: #c6f8ff;
+            outline: none;
+            border: none;
+            color: #fff;
+        }
+
+
+        #searchBtn {
+            border-color: #595cff;
+            border-width: 3px;
+            border-radius: 10px;
+            color: #c6f8ff;
+            padding: .5rem 1.5rem;
+
+        }
+
+        @media (max-width:780px) {
+            h1 {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class=" d-flex align-items-center justify-content-center text-center mt-5">Github User Finder</h1>
+        <p class=" text-center lh-lg">Find repos, url, profile of any Github user. In addition, you can
+            filter
+            through them
+            based on their
+            programming languages.</p>
+        <div class="box text-center d-flex justify-content-center align-items-center"><input type="text"
+                class="border-0 border-bottom bg-transparent p-2" id="searchBox" placeholder="Search by username...">
+            <button type="submit" id="searchBtn" class="mx-3 bg-transparent ">Search</button>
+        </div>
+    </div>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js.map"></script>
+    <script src="./githubapi.js"></script>
+    <script src="./ui.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
