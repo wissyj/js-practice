@@ -41,12 +41,42 @@
         }
 
 
-        #searchBtn {
+        #searchBtn,
+        .profileBtn {
             border-color: #595cff;
             border-width: 3px;
             border-radius: 10px;
             color: #c6f8ff;
             padding: .5rem 1.5rem;
+
+        }
+
+        .list-group:nth-child(2) {
+            padding-left: 3rem;
+        }
+
+        li {
+            list-style: none;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .bio_Data {
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: transparent !important;
+        }
+
+        svg {
+            fill: #fff;
+            width: 1.2rem;
+        }
+
+
+        footer {
+            border-top: 1px solid #c6f8ff;
 
         }
 
@@ -70,7 +100,10 @@
                 class="border-0 border-bottom bg-transparent p-2" id="searchBox" placeholder="Search by username...">
             <button type="submit" id="searchBtn" class="mx-3 bg-transparent ">Search</button>
         </div>
+        <div id="profile"></div>
     </div>
+    <!-- add functionality to the search button -->
+    <footer class="footer-copyright text-center pt-2 m-3">&copy; Tech Wissy 2023. Designed with &hearts;</footer>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/bootstrap.min.js.map"></script>
     <script src="./githubapi.js"></script>
