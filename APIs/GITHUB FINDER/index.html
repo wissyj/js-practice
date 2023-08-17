@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css.map">
     <style>
         body {
-            background: #000;
             height: 100vh;
             color: #c6f8ff !important;
 
@@ -80,6 +79,10 @@
 
         }
 
+        .head {
+            display: none;
+        }
+
         @media (max-width:780px) {
             h1 {
                 font-size: 4rem;
@@ -88,7 +91,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
     <div class="container">
         <h1 class=" d-flex align-items-center justify-content-center text-center mt-5">Github User Finder</h1>
         <p class=" text-center lh-lg">Find repos, url, profile of any Github user. In addition, you can
@@ -101,6 +104,9 @@
             <button type="submit" id="searchBtn" class="mx-3 bg-transparent ">Search</button>
         </div>
         <div id="profile"></div>
+        <h3 class="mb-2 head">Latest Repositories</h3>
+        <div id="repos">
+        </div>
     </div>
     <!-- add functionality to the search button -->
     <footer class="footer-copyright text-center pt-2 m-3">&copy; Tech Wissy 2023. Designed with &hearts;</footer>

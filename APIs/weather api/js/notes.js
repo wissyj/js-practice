@@ -28,7 +28,6 @@ const taskList = document.querySelector(".collection");
 const clearBtn = document.querySelector(".clear-tasks");
 const filter = document.querySelector("#filter");
 const taskInput = document.querySelector("#task");
-
 // load all event listeners
 loadEventListeners();
 // load  event listeners
@@ -53,10 +52,11 @@ function getTasks() {
     li.className = "collection-item cyan";
 
     // Create textarea element
-    const task_input_el = document.createElement("textarea");
+    const task_input_el = document.createElement("div");
     task_input_el.classList.add("text");
     task_input_el.setAttribute("readonly", "readonly");
-    task_input_el.appendChild(document.createTextNode(note));
+    // extract only the note variable in each object in the array represented with the parameter - note as seen above
+    task_input_el.appendChild(document.createTextNode(note.note));
 
     // Create edit button
     const task_edit_el = document.createElement("button");
@@ -85,23 +85,91 @@ function getTasks() {
       } else {
         task_edit_el.innerText = "Edit";
         task_input_el.setAttribute("readonly", "readonly");
-        const newContent = task_input_el.value;
+        const newContent = task_input_el.textContent;
         const taskIndex = Array.from(taskList.children).indexOf(li);
         updateTaskInLocalStorage(taskIndex, newContent);
       }
       e.preventDefault();
     });
+
     // Delete button event listener
     task_delete_el.addEventListener("click", function (e) {
       removeTaskFromLocalStorage(li);
       taskList.removeChild(li);
       e.preventDefault();
     });
-    const listItems = document.querySelectorAll("li");
+    const listItems = document.querySelectorAll(
+      "#task-form .collection .collection-item"
+    );
 
     editModal(listItems);
   });
 }
+
+// Function to load the saved to-do list from LocalStorage
+function loadTodoList() {
+  const savedTasks = JSON.parse(localStorage.getItem("todoList"));
+  if (savedTasks) {
+    const todoList = document.getElementById("todo-list");
+    savedTasks.forEach((savedTask) => {
+      const listItem = document.createElement("li");
+      listItem.className = "collection-item todo-item";
+      const { task, dueTime } = savedTask;
+      const dueDateTime = new Date(dueTime);
+      const currentTime = new Date();
+      const timeDifference = dueDateTime.getTime() - currentTime.getTime();
+      const remainingSeconds = Math.floor(timeDifference / 1000);
+      const remainingMinutes = Math.floor(remainingSeconds / 60);
+      const remainingHours = Math.floor(remainingMinutes / 60);
+      const remainingDays = Math.floor(remainingHours / 24);
+
+      if (timeDifference < 0) {
+        listItem.innerHTML = `
+        <span class="title grey-text">${task}</span>
+        <p class="dueTime ">${dueDateTime.toLocaleString()}</p>
+        <span class="remaining">Event Ended!!!</span><br>
+        <button class="delete">Delete</button>
+      `;
+        const deleteBtn = listItem.querySelector(".delete");
+        deleteBtn.addEventListener("click", function (e) {
+          console.log("right!!");
+          removeTodoFromLS(listItem);
+          todoList.removeChild(listItem);
+          e.preventDefault();
+        });
+        todoList.appendChild(listItem);
+      } else {
+        listItem.innerHTML = `
+        <label>
+        <input type="checkbox" class="filled-in" />
+        <div class="title  ">${task}</div>
+      </label>
+      <p class="dueTime mx-1">${dueDateTime.toLocaleString()}</p>
+      <span class="remaining">Remaining: ${remainingDays} days, ${
+          remainingHours % 60
+        } hours, ${remainingMinutes % 60} minutes, ${
+          remainingSeconds % 60
+        } seconds
+        </span><br>
+      <button class="delete">Delete</button>
+      `;
+        todoList.appendChild(listItem);
+        // Delete button event listener
+        const deleteBtn = listItem.querySelector(".delete");
+        deleteBtn.addEventListener("click", function (e) {
+          console.log("right!!");
+          removeTodoFromLS(listItem);
+          todoList.removeChild(listItem);
+          e.preventDefault();
+        });
+      }
+    });
+  }
+}
+
+// Load the saved to-do list every time page loads
+// store task in LS
+loadTodoList();
 // add task event
 function addTask(e) {
   if (taskInput.value === "") {
@@ -111,12 +179,11 @@ function addTask(e) {
   // create UI elements
   const listItem = document.createElement("li");
   // input in li tag
-  const task_input_el = document.createElement("textarea");
+  const task_input_el = document.createElement("div");
   task_input_el.classList.add("text");
   task_input_el.type = "text";
   task_input_el.value = taskInput.value;
   task_input_el.setAttribute("readonly", "readonly");
-
   // edit button
   const task_edit_el = document.createElement("button");
   task_edit_el.classList.add("edit");
@@ -133,27 +200,26 @@ function addTask(e) {
   listItem.appendChild(task_input_el);
   listItem.appendChild(task_edit_el);
   listItem.appendChild(task_delete_el);
-
   // append li  tag to ul tag
   taskList.appendChild(listItem);
-
   // STORE IN lS
   storeTaskInLocalStorage(taskInput.value);
 
   // clear input box
   taskInput.value = "";
   e.preventDefault();
-  // edit el
+  // edit button event listener
   task_edit_el.addEventListener("click", function (e) {
     if (this.innerText.toLowerCase() == "edit") {
       this.innerText = "Save";
       task_input_el.removeAttribute("readonly");
       task_input_el.focus();
     } else {
+      // try removing the click button event and use an event that listeners for addition of a character, just like google notes and vs code
       this.innerText = "Edit";
       task_input_el.setAttribute("readonly", "readonly");
       const listItem = this.parentElement;
-      const newContent = task_input_el.value;
+      const newContent = task_input_el.textContent;
       const taskIndex = Array.from(taskList.children).indexOf(listItem);
       updateTaskInLocalStorage(taskIndex, newContent);
     }
@@ -162,26 +228,24 @@ function addTask(e) {
 
   // Delete button event listener
   task_delete_el.addEventListener("click", function (e) {
-    removeTaskFromLocalStorage(li);
-    taskList.removeChild(li);
+    removeTaskFromLocalStorage(listItem);
+    taskList.removeChild(listItem);
     e.preventDefault();
   });
-  const listItems = document.querySelectorAll("li");
-
-  editModal(listItems);
 }
 function editModal(listItems) {
   listItems.forEach(function (listItem) {
     listItem.addEventListener("dblclick", function () {
       // Clone the value of the textarea
-      const listItemTextarea = this.querySelector("textarea.text");
-      const textareaValue = listItemTextarea.value;
+      const listItemTextarea = this.querySelector("div.text");
+
+      const textareaValue = listItemTextarea.textContent;
+
       const modalTextarea = document.querySelector("#modal-textarea");
       modalTextarea.value = textareaValue;
 
       // Show the modal
       const modal = document.querySelector("#modal");
-      const modalContent = document.querySelector(".modal-content");
       modal.style.display = "flex";
     });
     // Select the close button of the modal
@@ -195,7 +259,62 @@ function editModal(listItems) {
   });
 }
 
-// store task in LS
+// Function to add a task to the to-do list
+document.getElementById("add-todo-btn").addEventListener("click", () => {
+  const todoInput = document.getElementById("todo-input");
+  const dueTimeInput = document.getElementById("due-time-input");
+  const task = todoInput.value.trim(); // Trim any leading/trailing whitespaces
+  const dueTime = dueTimeInput.value;
+  const dueDateTime = new Date(dueTime);
+  const currentTime = new Date();
+  const timeDifference = dueDateTime.getTime() - currentTime.getTime();
+  const remainingSeconds = Math.floor(timeDifference / 1000);
+  const remainingMinutes = Math.floor(remainingSeconds / 60);
+  const remainingHours = Math.floor(remainingMinutes / 60);
+  const remainingDays = Math.floor(remainingHours / 24);
+  if (task !== "" && dueTime !== "") {
+    if (timeDifference < 0) {
+      error("Time has passed!!!");
+      todoInput.value = "";
+      dueTimeInput.value = "";
+    } else {
+      const todoList = document.getElementById("todo-list");
+      const listItem = document.createElement("li");
+      listItem.className = "collection-item todo-item";
+      listItem.innerHTML = `
+      <label>
+      <input type="checkbox" class="filled-in" />
+      <span class="title">${task}</span>
+    </label>
+    <p class="dueTime mx-1">${dueDateTime.toLocaleString()}</p>
+    <span class="remaining ">Remaining: ${remainingDays} days, ${
+        remainingHours % 60
+      } hours, ${remainingMinutes % 60} minutes, ${
+        remainingSeconds % 60
+      } seconds</span><br>
+  <button class="delete">Delete</button>
+      `;
+      todoList.appendChild(listItem);
+      // Delete button event listener
+      todoList.appendChild(listItem);
+      todoInput.value = "";
+      dueTimeInput.value = "";
+      const deleteBtn = listItem.querySelector(".delete");
+      deleteBtn.addEventListener("click", function (e) {
+        console.log("right!!!");
+        removeTodoFromLS(listItem);
+        todoList.removeChild(listItem);
+        e.preventDefault();
+      });
+    }
+    // Save the updated to-do list to LocalStorage
+    saveTodoList();
+  } else {
+    error("Please add a task!!!");
+  }
+});
+
+// save notes in LS
 function storeTaskInLocalStorage(note) {
   let notes;
   if (localStorage.getItem("notes") === null) {
@@ -203,11 +322,33 @@ function storeTaskInLocalStorage(note) {
   } else {
     notes = JSON.parse(localStorage.getItem("notes"));
   }
-  notes.push(note);
+  const currentTime = new Date().toISOString(); // Get the current timestamp
+  const noteWithTimestamp = { note: note.trim(), timestamp: currentTime }; // Trim any leading/trailing whitespaces in the note
+  notes.push(noteWithTimestamp);
 
   localStorage.setItem("notes", JSON.stringify(notes));
 }
-
+// Function to save the to-do list to LocalStorage
+function saveTodoList() {
+  const todoListItems = document.querySelectorAll("#todo-list li");
+  if (todoListItems !== "") {
+    const tasks = Array.from(todoListItems).map((item) => {
+      const task = item.querySelector(".title").textContent;
+      const dueTime = new Date(item.querySelector(".dueTime").textContent);
+      // if (
+      //   document
+      //     .querySelector(".title")
+      //     .nextElementSibling.classList.contains("filled-in")
+      // ) {
+      //   return { task, dueTime, isCompleted };
+      // } else {
+      //   return { task, dueTime };
+      // }
+      return { task, dueTime };
+    });
+    localStorage.setItem("todoList", JSON.stringify(tasks));
+  }
+}
 // update task in LS
 function updateTaskInLocalStorage(taskIndex, newContent) {
   let notes;
@@ -216,9 +357,9 @@ function updateTaskInLocalStorage(taskIndex, newContent) {
   } else {
     notes = JSON.parse(localStorage.getItem("notes"));
   }
-
-  notes[taskIndex] = newContent;
-
+  notes[taskIndex].note = newContent;
+  console.log(newContent);
+  console.log(notes[taskIndex].note);
   localStorage.setItem("notes", JSON.stringify(notes));
 }
 
@@ -230,22 +371,43 @@ function removeTaskFromLocalStorage(taskItem) {
   } else {
     notes = JSON.parse(localStorage.getItem("notes"));
   }
-
-  const taskContent = taskItem.querySelector("textarea.text").value;
+  const taskContent = taskItem.querySelector("div.text").textContent;
   const taskIndex = notes.indexOf(taskContent);
+  console.log(taskIndex);
   if (taskIndex !== -1) {
     notes.splice(taskIndex, 1);
     localStorage.setItem("notes", JSON.stringify(notes));
   }
 }
+function removeTodoFromLS(todoItem) {
+  let todos;
+  if (localStorage.getItem("todoList") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todoList"));
+  }
 
+  const task = todoItem.querySelector(".title").textContent;
+  const dueTime = new Date(todoItem.querySelector(".dueTime").textContent);
+
+  // Find the index of the task in the todos array
+  const todoIndex = todos.findIndex((todo) => {
+    return (
+      todo.task === task &&
+      new Date(todo.dueTime).getTime() === dueTime.getTime()
+    );
+  });
+
+  if (todoIndex !== -1) {
+    todos.splice(todoIndex, 1);
+    localStorage.setItem("todoList", JSON.stringify(todos));
+  }
+}
 // clear all tasks
 function clearTasks(e) {
   // you can also use - taskList.innerHTML ='' but the one used below has been proved to be faster;
   while (taskList.firstChild) {
-    // if (confirm("Are you sure you want to delete all permanently?")) {
     taskList.removeChild(taskList.firstChild);
-    // }
   }
   // Clear from LS
   clearTasksFromLocalStorage();
@@ -269,8 +431,19 @@ function filterTasks(e) {
   });
   e.preventDefault();
 }
-// Select all listItem elements
-const listItems = document.querySelectorAll(".collection-item");
+// error box
+function error(message) {
+  const errorBox = document.createElement("div");
+  errorBox.classList = "error red ";
+  errorBox.textContent = message;
+  const container = document.querySelector(".container");
+  const row = document.querySelector(".row");
+  container.insertBefore(errorBox, row);
+  function clearErrorBox() {
+    errorBox.remove();
+  }
+  setTimeout(clearErrorBox, 3000);
+}
 
 // reveal tips body to show tips to user
 const plusSign = document.querySelector("#plusSign");
@@ -288,6 +461,22 @@ plusSign.addEventListener("click", function (e) {
       '<svg id="plusSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg>';
   }
 });
+
+// switch tabs in notes page
+const notePage = document.getElementById("notes");
+const todosPage = document.getElementById("todos");
+todosPage.addEventListener("click", function (e) {
+  document.querySelector(".card-content").style.display = "none";
+  document.querySelector(".card-action .card-title").style.display = "none";
+  document.querySelector(".card-action .row").style.display = "none";
+  todosPage.classList.add("active");
+});
+notePage.addEventListener("click", function (e) {
+  document.querySelector(".card-action .second").style.display = "none";
+  document.getElementById("todo-list").style.display = "none";
+  notePage.classList.add("active");
+});
+// todosPage.addEventListener("click", openTodos);
 
 // // practice
 // const shot = document.querySelector(".collection");

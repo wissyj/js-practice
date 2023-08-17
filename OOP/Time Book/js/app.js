@@ -165,6 +165,7 @@ class storeinLS {
     const books = storeinLS.getBooksFromLS();
     books.forEach(function (book, index) {
       if (book.regNo === regNo) {
+        // the code on next line- splice, means array.splice(which either removes or removes object from array). index here means number in the array and 1 removes it then if a string is also added, it replaces the removed object
         books.splice(index, 1);
       }
     });

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wissy Web App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- if there is any part of the HTML page you would want automatic bootstrap-4 templates, just type  or font awesome snippet-...(any part listed in emmet) -->
+
+<body class="">
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div id="nav-menu" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark ">
+                <div
+                    class="d-flex flex-column align-items-center align-items-sm-start pe-3 pt-2 text-white min-vh-100 position-relative w-100">
+                    <nav id="app-drawer">
+                        <div class="d-flex h-100 ">
+                            <ul class="app-drawer-links">
+                                <li class="adl-entry">
+                                    <a href="./index.html" class="adl-one">
+                                        <span class="drawer-icon" title="Home">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path
+                                                    d="M543.8 287.6c17 0 32-14 32-32.1c1-9-3-17-11-24L512 185V64c0-17.7-14.3-32-32-32H448c-17.7 0-32 14.3-32 32v36.7L309.5 7c-6-5-14-7-21-7s-15 1-22 8L10 231.5c-7 7-10 15-10 24c0 18 14 32.1 32 32.1h32v69.7c-.1 .9-.1 1.8-.1 2.8V472c0 22.1 17.9 40 40 40h16c1.2 0 2.4-.1 3.6-.2c1.5 .1 3 .2 4.5 .2H160h24c22.1 0 40-17.9 40-40V448 384c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v64 24c0 22.1 17.9 40 40 40h24 32.5c1.4 0 2.8 0 4.2-.1c1.1 .1 2.2 .1 3.3 .1h16c22.1 0 40-17.9 40-40V455.8c.3-2.6 .5-5.3 .5-8.1l-.7-160.2h32z" />
+                                            </svg> </span>
+                                        <span class="drawer-title flex-grow-1">Home</span>
+                                    </a>
+                                </li>
+                                <li class="adl-entry">
+                                    <div>
+                                        <a href="./notes.html" class="adl-one">
+                                            <span class="drawer-icon" title="NotePad">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                                    <path
+                                                        d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H288V368c0-26.5 21.5-48 48-48H448V96c0-35.3-28.7-64-64-64H64zM448 352H402.7 336c-8.8 0-16 7.2-16 16v66.7V480l32-32 64-64 32-32z" />
+                                                </svg> </span>
+                                            <span class="drawer-title flex-grow-1">Notes</span>
+                                        </a>
+                                        <button class="btn adl-toggle">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                                <path
+                                                    d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <ul id="dropdown">
+                                        <li>
+                                            <a href="./notes.html">
+                                                NotePad </a>
+                                        </li>
+                                        <li>
+                                            <a href="./notes.html">
+                                                Todos </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="adl-entry">
+                                    <a href="./weather.html" class="adl-one">
+                                        <span class="drawer-icon" title="Weather Page">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                                                <path
+                                                    d="M137.9 3c-4.5-3.2-10.3-3.9-15.4-1.8s-8.8 6.7-9.7 12.2L98.7 98.7 13.4 112.8c-5.5 .9-10.1 4.6-12.2 9.7S-.2 133.4 3 137.9l50.3 70.3L3 278.5c-3.2 4.5-3.9 10.3-1.8 15.4s6.7 8.8 12.2 9.7l85.3 14.1L112.8 403c.9 5.5 4.6 10.1 9.7 12.2s10.9 1.4 15.4-1.8l55.2-39.5c-19.9-21.9-32.3-50.8-33.1-82.6c-17.6-10.2-32.2-26.1-40.6-46.3c-20.3-49 3-105.1 52-125.4c29.4-12.2 61.4-8.7 86.7 6.7c13.1-21.8 32.5-39.4 55.8-50.3L303.6 13.4c-.9-5.5-4.6-10.1-9.7-12.2S282.9-.2 278.5 3L208.2 53.3 137.9 3zM291.4 415.9c-2.5 .6-5.1 .6-7.6-.1c1.4 0 2.8 .1 4.2 .1h3.5zm-46.3-260c-17.3-12.2-40.4-15.6-61.5-6.9c-32.7 13.5-48.2 51-34.6 83.6c3.6 8.7 8.9 16.1 15.3 22.2c10.6-39.7 39.9-71.8 77.8-86.4c.8-4.3 1.8-8.4 3-12.5zM277.4 420c-11-7.4-25.9-4.4-33.3 6.7l-32 48c-7.4 11-4.4 25.9 6.7 33.3s25.9 4.4 33.3-6.7l32-48c7.4-11 4.4-25.9-6.7-33.3zm96 0c-11-7.4-25.9-4.4-33.3 6.7l-32 48c-7.4 11-4.4 25.9 6.7 33.3s25.9 4.4 33.3-6.7l32-48c7.4-11 4.4-25.9-6.7-33.3zm96 0c-11-7.4-25.9-4.4-33.3 6.7l-32 48c-7.4 11-4.4 25.9 6.7 33.3s25.9 4.4 33.3-6.7l32-48c7.4-11 4.4-25.9-6.7-33.3zm96 0c-11-7.4-25.9-4.4-33.3 6.7l-32 48c-7.4 11-4.4 25.9 6.7 33.3s25.9 4.4 33.3-6.7l32-48c7.4-11 4.4-25.9-6.7-33.3zm74.5-116.1c0-39.3-28.4-72.1-65.8-78.7c1.2-5.6 1.9-11.3 1.9-17.2c0-44.2-35.8-80-80-80c-17 0-32.8 5.3-45.8 14.4C433.3 114.6 402.8 96 368 96c-53 0-96 43-96 96l0 1.3c-45.4 7.6-80 47.1-80 94.6c0 53 43 96 96 96H559.9c44.2 0 80-35.8 80-80z" />
+                                            </svg> </span>
+                                        <span class="drawer-title flex-grow-1">Weather</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="container mt-3 px-5 h-100 col-12">
+                <button id="nav-button" class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="14"
+                            viewBox="0 0 20 14" id="menu-toggler">
+                            <g fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" transform="translate(1 1)">
+                                <path d="M0 6h18M0 0h18M0 12h18"></path>
+                            </g>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="close">
+                            <path
+                                d="M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z">
+                            </path>
+                        </svg></span>
+                </button>
+                <div id="header" class="d-flex justify-content-between align-items-center my-5">
+                    <div id="dateTime">
+                        <div id="time" class="mb-1"><span class="">12:30</span> PM</div>
+                        <div id="date" class="mb-3">Monday, 30th July, 2023</div>
+                    </div>
+                    <div id="location">
+                        <div id="city" class="fs-3 mb-1">Uyo</div>
+                        <div id="country">Nigeria</div>
+                    </div>
+                </div>
+                <div id="middle" class="card card-body my-5 gy-1">
+                    <h5>To-Do List:</h5>
+                    <ul id="todo-list" class=" list-group border-0 bg-transparent"></ul>
+                </div>
+                <div id="bottom" class="row gy-1">
+                    <ul id="weather-box" class="d-flex  text-center p-4 justify-content-center align-content-center">
+                        <li class="weather-days d-flex w-75 justify-content-center align-content-center">
+                            <div id="img_description">
+                                <div class="weather-img mb-1 me-3 ">sun</div>
+                            </div>
+                            <div id="day_degree" class="d-flex flex-column align-items-center justify-content-center">
+                                <div class="weather-day badge bg-dark fs-2 mb-1">Today</div>
+                                <div class="weather-degree fs-2 mb-1">12 <sup>o</sup></div>
+                                <div class="weather-description mb-3 fs-6 text-uppercase mb-1">sun</div>
+                            </div>
+                        </li>
+                </div>
+
+            </div>
+            </ul>
+        </div>
+    </div>
+
+    <!-- use the link below and change the icon number-10d to any icon number stated in the object -->
+    <!-- https://openweathermap.org/img/wn/10d@2x.png -->
+    <!-- https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key} -->
+    <!--    <div id="openweathermap-widget-11"></div>
+    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '2319480',appid: '31a6f23dbd207b2e6d2c61803b365e98',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+     31a6f23dbd207b2e6d2c61803b365e98 - api key -->
+    <!-- ask Jeff which frameworks, languages he learnt and how we went through them. recommendations and what he's working on -->
+    <!-- check brad's tutorials for latest updates and REACT NATIVE weather app. Check his repo too -->
+
+    <!-- Designing a color palette for a productivity web application involves selecting colors that are both visually appealing and conducive to a productive environment. Here's a color palette suggestion that incorporates calming and energizing colors, along with a neutral base to create a balanced and professional feel:
+
+1. Primary Color: #007BFF (Blue)
+   - Blue is associated with trust, reliability, and focus. It can help users feel calm and in control, making it an ideal choice for the primary color.
+
+2. Secondary Color: #34C759 (Green)
+   - Green is often associated with growth, balance, and freshness. It can represent progress and success in a productivity app, making it a great secondary color for buttons or accents.
+
+3. Accent Color: #FF9500 (Orange)
+   - Orange is a vibrant and energetic color that can be used sparingly to draw attention to important elements or call-to-action buttons.
+
+4. Neutral Color 1: #333333 (Dark Gray)
+   - Dark gray can be used for text and other elements to provide a good contrast with lighter colors. It gives a sense of stability and sophistication to the design.
+
+5. Neutral Color 2: #F5F5F5 (Light Gray)
+   - Light gray works well for backgrounds and secondary text. It helps to maintain a clean and organized appearance.
+
+Remember, these colors can serve as a starting point for your productivity web application's design. You may adjust the shades and combinations to suit your application's specific branding and user experience goals. Additionally, ensure that the chosen colors meet accessibility standards and can be easily distinguished by users with different visual abilities. -->
+    <!-- Website side project web app productivity colors palette #6ce3a8, #98f0ea, #156f42, #18804c, #babec2, #18804c Brand original color codes, colors palette. -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js.map"></script>
+    <script src=" ./js/weatherapp.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        // function addToHomeScreen() {
+        //     if ('serviceWorker' in navigator) {
+        //         window.addEventListener('load', () => {
+        //             navigator.serviceWorker.register('service-worker.js')
+        //                 .then((reg) => {
+        //                     reg.onupdatefound = () => {
+        //                         const installingWorker = reg.installing;
+        //                         installingWorker.onstatechange = () => {
+        //                             if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+        //                                 // At this point, the updated precached content has been fetched and the old content will have been purged.
+        //                                 // You can now show a message to the user asking them to reload the page for the changes to take effect.
+        //                             }
+        //                         };
+        //                     };
+        //                 })
+        //                 .catch((error) => {
+        //                     console.error('Error during service worker registration:', error);
+        //                 });
+        //         });
+        //     }
+
+        //     // Prompt the user to add the shortcut
+        //     if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+        //         return; // The app is already installed
+        //     }
+
+        //     const deferredPrompt = window.deferredPrompt;
+
+        //     if (deferredPrompt) {
+        //         // Show the add to home screen prompt
+        //         deferredPrompt.prompt();
+
+        //         // Wait for the user to respond to the prompt
+        //         deferredPrompt.userChoice.then((choiceResult) => {
+        //             if (choiceResult.outcome === 'accepted') {
+        //                 console.log('User accepted the A2HS prompt');
+        //             } else {
+        //                 console.log('User dismissed the A2HS prompt');
+        //             }
+
+        //             // Clear the deferred prompt
+        //             window.deferredPrompt = null;
+        //         });
+        //     }
+        // }
+
+        // // Call the function when the page loads
+        // addToHomeScreen();
+    </script>
+</body>
+
+</html>

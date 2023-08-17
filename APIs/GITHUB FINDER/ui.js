@@ -1,6 +1,7 @@
 class githubUI {
   constructor() {
     this.profile = document.getElementById("profile");
+    this.repos = document.getElementById("repos");
   }
   displayProfile(userProfile) {
     this.profile.innerHTML = `
@@ -31,6 +32,7 @@ class githubUI {
 </div>
 </div>
     `;
+
     // const userBio = userProfile.bio;
     // const Available = userProfile.hireable;
     // const userCompany = userProfile.company;
@@ -45,5 +47,31 @@ class githubUI {
     // ) {
     //   === "Not Available";
     // }
+  }
+
+  displayRepos(userRepos) {
+    let output = "";
+
+    userRepos.forEach(function (repos) {
+      output += `
+        <div class="card card-body mb-2">
+          <div class="row">
+            <div class="col-md-6">
+              <a href="${repos.html_url}" target="_blank">${repos.name}</a>
+            </div>
+            <div class="col-md-6">
+            <span class="badge badge-primary">Stars: ${repos.stargazers_count}</span>
+            <span class="badge badge-secondary">Watchers: ${repos.watchers_count}</span>
+            <span class="badge badge-success">Forks: ${repos.forks_count}</span>
+            </div>
+          </div>
+        </div>`;
+    });
+    this.repos.innerHTML = output;
+    if (output !== "") {
+      document.querySelector(".head").style.display = "block";
+    } else {
+      document.querySelector(".head").style.display = "";
+    }
   }
 }

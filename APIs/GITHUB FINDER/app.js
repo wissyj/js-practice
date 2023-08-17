@@ -30,6 +30,7 @@ searchBox.addEventListener("keyup", (e) => {
       } else {
         // show profile from ui.js
         ui.displayProfile(profileData.profile);
+        ui.displayRepos(profileData.repos);
       }
     });
   } else {

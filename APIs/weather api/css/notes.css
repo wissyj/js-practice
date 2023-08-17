@@ -1,0 +1,305 @@
+body {
+  background: #fff;
+  color: #0d767e;
+}
+nav {
+  background-color: #0d767e;
+}
+
+.row {
+  display: block;
+}
+.page-h1 {
+  color: #0d767e;
+}
+nav ul li.active {
+  background-color: #fff;
+}
+nav ul li.active a {
+  color: #0d767e;
+}
+
+.card-title h5,
+svg {
+  color: #26a69a;
+  fill: #26a69a;
+}
+
+.collection-item > a > svg {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  fill: #fff;
+  display: none;
+}
+
+.collection .collection-item a {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.btn {
+  border-radius: 50px;
+}
+
+.collection .collection-item button {
+  cursor: pointer;
+  margin: 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.4s;
+  border: none;
+  border-radius: 5px;
+}
+
+.collection .collection-item {
+  padding: 0.5rem;
+  margin: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 18px;
+  background: #00838f !important;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-wrap: normal;
+}
+
+.collection-item::selection {
+  color: #00838f;
+  background: #fff;
+}
+
+.collection .collection-item:focus {
+  border: 2px solid #333 !important;
+}
+
+.collection .collection-item:hover {
+  background: #0d767e !important;
+}
+
+.collection .collection-item:hover svg {
+  display: block;
+}
+
+.collection .collection-item .text {
+  color: #fff;
+  font-size: 1.125rem;
+  display: block;
+  transition: 0.4s;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  margin: 0;
+  height: auto;
+}
+
+.collection .collection-item .text:read-only {
+  color: #fff;
+  border: none;
+  resize: none;
+}
+
+.collection .collection-item .text:focus {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+label .title {
+  color: #fff;
+  word-wrap: normal;
+  overflow: hidden;
+  height: auto;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.dueTime {
+  color: #fefefe;
+  font-size: 1rem;
+  margin: 0 0.7rem 0 1rem;
+  font-weight: 900;
+}
+
+.remaining {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+svg {
+  width: 1.5rem;
+  cursor: pointer;
+}
+
+#tipsHeading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hideTips {
+  display: none;
+}
+
+.showTips {
+  display: block;
+}
+
+.edit {
+  color: #00838f;
+  background-color: #fff;
+  height: 2.5rem;
+}
+
+.edit:active {
+  background-color: #00838f;
+  color: #fff;
+  height: 2.5rem;
+}
+
+.delete {
+  color: #00838f;
+  background-color: #fff;
+  height: 2.5rem;
+}
+
+.delete:active {
+  background-color: #00838f;
+  color: #fff;
+  height: 2.5rem;
+}
+
+input [type="submit"]:active {
+  opacity: 0.6;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + span:not(.lever):before {
+  border: 2px solid #26a69a;
+  background-color: #26a69a;
+}
+
+.custom-checkbox input[type="checkbox"] + span:not(.lever):before {
+  border: 2px solid #26a69a;
+  border-radius: 3px;
+}
+
+/* CSS for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  max-height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px;
+  width: 80%;
+  max-height: 80vh;
+  /* Limit the maximum height of the modal */
+  overflow-y: auto;
+  /* Enable vertical scrolling if needed */
+}
+#modal-textarea {
+  color: var(--main-color);
+  max-width: 100%;
+  height: 15rem;
+  padding: 0.5rem;
+}
+.modal-content .close {
+  color: #f44336;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+.error {
+  padding: 1rem;
+  color: #ffff;
+}
+#modal-textarea {
+  height: 20rem;
+  padding: 1rem;
+  color: #00838f;
+}
+
+::placeholder {
+  color: #333;
+  opacity: 0.6;
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 10px;
+  margin-block: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #868383;
+  opacity: 0.3;
+  border-radius: 10px;
+}
+
+::-moz-selection {
+  background: #00838f;
+  color: #fff;
+}
+
+::selection {
+  background: #00838f;
+  color: #fff;
+}
+
+@media (max-width: 780px) {
+  #weather-box {
+    flex-wrap: wrap;
+  }
+
+  #weather-days {
+    flex-direction: column;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .collection .collection-item {
+    display: block;
+  }
+
+  .dueTime {
+    margin: 1rem 0;
+  }
+
+  .edit,
+  .delete {
+    font-size: 0.9rem !important;
+    padding: 0.5rem;
+    margin: 1rem;
+  }
+}
